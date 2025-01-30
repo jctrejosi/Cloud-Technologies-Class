@@ -22,7 +22,7 @@ chmod 400 jenkins_key_pair.pem
 
 ### 2. Crear el stack en CloudFormation
 
-- Sube el archivo [`jenkins.yml`](https://github.com/jctrejosi/cloud-tecnology/blob/master/jenkins.yml) al CloudShell.
+- Sube el archivo [`jenkins.yml`](https://github.com/jctrejosi/cloud-tecnology/blob/master/yml/jenkins.yml) al CloudShell.
 - Ejecuta el siguiente comando para crear el stack usando tu archivo `jenkins.yml`:
 
 ```bash
