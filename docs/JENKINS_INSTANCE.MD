@@ -40,12 +40,6 @@ Monitorea el progreso de la creación del stack:
 aws cloudformation describe-stacks --stack-name JenkinsStack --query "Stacks[0].StackStatus"
 ```
 
-Ver los eventos del stack para más detalles:
-
-```bash
-aws cloudformation describe-stack-events --stack-name JenkinsStack
-```
-
 ### 4. Obtener la IP pública de la instancia
 
 Una vez que el stack esté en estado `CREATE_COMPLETE` debemos obtener la IP pública de la instancia
@@ -122,6 +116,18 @@ aws cloudformation create-stack --stack-name JenkinsStack --template-body file:/
 aws cloudformation describe-stacks --stack-name JenkinsStack --query "Stacks[0].StackStatus"
 ```
 
+### Ver detalles y eventos de stack-cloudformation
+
+```bash
+aws cloudformation describe-stack-events --stack-name JenkinsStack
+```
+
+### Eliminar Stack-cloudformation
+
+```bash
+aws cloudformation delete-stack --stack-name JenkinsStack
+```
+
 ### Estado de las instancias
 
 ```bash
@@ -140,28 +146,10 @@ aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Ta
 sudo cat /var/log/cloud-init-output.log
 ```
 
-### Obtener contraseña de jenkins
-
-  ```bash
-  sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-  ```
-
-### Eliminar Stack-cloudformation
-
-```bash
-aws cloudformation delete-stack --stack-name JenkinsStack
-```
-
 ### Eliminar instancias EC2
 
 ```bash
 aws ec2 terminate-instances --instance-ids i-xxxxxxxxxxxxxxxxx
-```
-
-### Validar clave usada en la instancia
-
-```bash
-aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text
 ```
 
 ### Asignar IP pública a la instancia
@@ -177,3 +165,15 @@ INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=instanc
 PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
 echo $PUBLIC_IP
 ```
+
+### Validar clave usada en la instancia (Dentro de la instancia)
+
+```bash
+aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text
+```
+
+### Obtener contraseña de jenkins (Dentro de la instancia)
+
+  ```bash
+  sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+  ```
