@@ -32,7 +32,7 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### 3. Verificar el estado del stack
+### 3. Verificar el estado del stack-cloudformation
 
 Monitorea el progreso de la creación del stack:
 
@@ -50,17 +50,11 @@ aws cloudformation describe-stack-events --stack-name JenkinsStack
 
 Una vez que el stack esté en estado `CREATE_COMPLETE` debemos obtener la IP pública de la instancia
 
-Obtener estado de instancias
+Obtener valores de las instancias
 
 ```bash
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name'].Value | [0], PublicIpAddress, State.Name]" --output table
 
-```
-
-Asignar IP pública a la instancia
-
-```bash
-ALLOC_ID=$(aws ec2 allocate-address --query 'AllocationId' --output text) aws ec2 associate-address --instance-id $INSTANCE_ID --allocation-id $ALLOC_ID
 ```
 
 ### 5. Conectarse a la instancia por SSH
@@ -93,7 +87,7 @@ Ingresa la contraseña que copiaste en el paso anterior.
 
 Sigue las instrucciones en pantalla para completar la configuración inicial de Jenkins.
 
-### 8. Eliminar el stack (opcional)
+### 8. Eliminar el stack-cloudformation (opcional)
 
 Si deseas eliminar el stack y todos los recursos asociados, ejecuta:
 
@@ -116,13 +110,13 @@ aws ec2 create-key-pair --key-name jenkins_key_pair --query 'KeyMaterial' --outp
 chmod 400 jenkins_key_pair.pem
 ```
 
-### Crear stack
+### Crear stack-cloudformation
 
 ```bash
 aws cloudformation create-stack --stack-name JenkinsStack --template-body file://jenkins.yml --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### Estado del stack
+### Estado del stack-cloudformation
 
 ```bash
 aws cloudformation describe-stacks --stack-name JenkinsStack --query "Stacks[0].StackStatus"
@@ -149,10 +143,10 @@ sudo cat /var/log/cloud-init-output.log
 ### Obtener contraseña de jenkins
 
   ```bash
-  sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+  sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
   ```
 
-### Eliminar Stack
+### Eliminar Stack-cloudformation
 
 ```bash
 aws cloudformation delete-stack --stack-name JenkinsStack
@@ -168,6 +162,12 @@ aws ec2 terminate-instances --instance-ids i-xxxxxxxxxxxxxxxxx
 
 ```bash
 aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text
+```
+
+### Asignar IP pública a la instancia
+
+```bash
+ALLOC_ID=$(aws ec2 allocate-address --query 'AllocationId' --output text) aws ec2 associate-address --instance-id $INSTANCE_ID --allocation-id $ALLOC_ID
 ```
 
 ### Obtener IP pública de instancia
