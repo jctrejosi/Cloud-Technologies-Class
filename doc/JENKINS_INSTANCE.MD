@@ -76,7 +76,7 @@ ssh -i jenkins_key_pair.pem ubuntu@$PUBLIC_IP
 Dentro de la instancia, ejecuta el siguiente comando para obtener la contraseña inicial de Jenkins:
 
 ```bash
-sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
 Copia la contraseña que se muestra.
