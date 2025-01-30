@@ -32,7 +32,7 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### 3. Verificar el estado del stack-cloudformation
+### 3. Verificar el estado del Stack-cloudformation
 
 Monitorea el progreso de la creación del stack:
 
@@ -40,20 +40,20 @@ Monitorea el progreso de la creación del stack:
 aws cloudformation describe-stacks --stack-name JenkinsStack --query "Stacks[0].StackStatus"
 ```
 
-### 4. Obtener la IP pública de la instancia
+### 4. Obtener la IP pública de la Instancia
 
-Una vez que el stack esté en estado `CREATE_COMPLETE` debemos obtener la IP pública de la instancia
+Una vez que el stack esté en estado `CREATE_COMPLETE` debemos obtener la IP pública de la Instancia
 
-Obtener valores de las instancias
+Obtener valores de las Instancias
 
 ```bash
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name'].Value | [0], PublicIpAddress, State.Name]" --output table
 
 ```
 
-### 5. Conectarse a la instancia por SSH
+### 5. Conectarse a la Instancia por SSH
 
-Usa el archivo de clave privada (`jenkins_key_pair.pem`) para conectarte a la instancia:
+Usa el archivo de clave privada (`jenkins_key_pair.pem`) para conectarte a la Instancia:
 
 ```bash
 ssh -i jenkins_key_pair.pem ubuntu@$PUBLIC_IP
@@ -61,7 +61,7 @@ ssh -i jenkins_key_pair.pem ubuntu@$PUBLIC_IP
 
 ### 6. Obtener la contraseña inicial de Jenkins
 
-Dentro de la instancia, ejecuta el siguiente comando para obtener la contraseña inicial de Jenkins:
+Dentro de la Instancia, ejecuta el siguiente comando para obtener la contraseña inicial de Jenkins:
 
 ```bash
 sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
@@ -81,7 +81,7 @@ Ingresa la contraseña que copiaste en el paso anterior.
 
 Sigue las instrucciones en pantalla para completar la configuración inicial de Jenkins.
 
-### 8. Eliminar el stack-cloudformation (opcional)
+### 8. Eliminar el Stack-cloudformation (opcional)
 
 Si deseas eliminar el stack y todos los recursos asociados, ejecuta:
 
@@ -104,19 +104,19 @@ aws ec2 create-key-pair --key-name jenkins_key_pair --query 'KeyMaterial' --outp
 chmod 400 jenkins_key_pair.pem
 ```
 
-### Crear stack-cloudformation
+### Crear Stack-cloudformation
 
 ```bash
 aws cloudformation create-stack --stack-name JenkinsStack --template-body file://jenkins.yml --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### Estado del stack-cloudformation
+### Estado del Stack-cloudformation
 
 ```bash
 aws cloudformation describe-stacks --stack-name JenkinsStack --query "Stacks[0].StackStatus"
 ```
 
-### Ver detalles y eventos de stack-cloudformation
+### Ver detalles y eventos de Stack-cloudformation
 
 ```bash
 aws cloudformation describe-stack-events --stack-name JenkinsStack
@@ -128,51 +128,51 @@ aws cloudformation describe-stack-events --stack-name JenkinsStack
 aws cloudformation delete-stack --stack-name JenkinsStack
 ```
 
-### Estado de las instancias
+### Estado de las Instancias
 
 ```bash
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name'].Value | [0], PublicIpAddress, State.Name]" --output table
 ```
 
-### Conectar a la instancia
+### Conectar a la Instancia
 
   ```bash
   ssh -i jenkins_key_pair.pem admin@$PUBLIC_IP
   ```
 
-### Ver logs de la instancia
+### Ver logs de la Instancia
 
 ```bash
 sudo cat /var/log/cloud-init-output.log
 ```
 
-### Eliminar instancias EC2
+### Eliminar Instancias EC2
 
 ```bash
 aws ec2 terminate-instances --instance-ids i-xxxxxxxxxxxxxxxxx
 ```
 
-### Asignar IP pública a la instancia
+### Asignar IP pública a la Instancia
 
 ```bash
 ALLOC_ID=$(aws ec2 allocate-address --query 'AllocationId' --output text) aws ec2 associate-address --instance-id $INSTANCE_ID --allocation-id $ALLOC_ID
 ```
 
-### Obtener IP pública de instancia
+### Obtener IP pública de Instancia
 
 ```bash
-INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=instanciaJenkins" --query "Reservations[0].Instances[0].InstanceId" --output text)
+INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=InstanciaJenkins" --query "Reservations[0].Instances[0].InstanceId" --output text)
 PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
 echo $PUBLIC_IP
 ```
 
-### Validar clave usada en la instancia (Dentro de la instancia)
+### Validar clave usada en la Instancia (Dentro de la Instancia)
 
 ```bash
 aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text
 ```
 
-### Obtener contraseña de jenkins (Dentro de la instancia)
+### Obtener contraseña de jenkins (Dentro de la Instancia)
 
   ```bash
   sudo docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
