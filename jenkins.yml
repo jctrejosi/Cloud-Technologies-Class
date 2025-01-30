@@ -1,0 +1,83 @@
+Resources:
+    VPC:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: 10.0.0.0/16
+        EnableDnsSupport: 'true'
+        EnableDnsHostnames: 'true'
+        Tags:
+        - Key: name
+          Value: vpc-trabajo
+
+    Subnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId: !Ref VPC
+        CidrBlock: 10.0.1.0/24
+
+
+    GrupoSeguridadJenkins:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: Grupo de Seguridad de Jenkins
+        VpcId: !Ref VPC
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 22
+            ToPort: 22
+            CidrIp: 0.0.0.0/0
+          - IpProtocol: tcp
+            FromPort: 80
+            ToPort: 80
+            CidrIp: 0.0.0.0/0
+          - IpProtocol: tcp
+            FromPort: 8080
+            ToPort: 8080
+            CidrIp: 0.0.0.0/0
+
+    instanciaJenkins:
+      Type: AWS::EC2::Instance
+      Properties:
+        ImageId: ami-00402f0bdf4996822
+        InstanceType: t2.micro
+        KeyName: prueba
+        SubnetId: !Ref Subnet
+        SecurityGroupIds:
+          - !Ref GrupoSeguridadJenkins
+        Tags:
+          - Key: Name
+            Value: instanciaJenkins
+
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash
+            apt-get update -y
+            apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            apt-get update -y
+            apt-get install -y docker-ce
+            systemctl start docker
+            systemctl enable docker
+            docker pull jenkins/jenkins:lts
+            docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+  #  instanciaApache:
+  #    Type: 'AWS::EC2::Instance'
+  #    Properties:
+  #       ImageId: ami-00402f0bdf4996822
+  #       InstanceType: t2.micro
+  #       KeyName: prueba
+  #       SecurityGroupIds:
+  #         - sg-043bcdf699413a158
+  #       Tags:
+  #         - Key: Name
+  #           Value: instanciaCursoGTN
+
+  #       UserData:
+  #         Fn::Base64: !Sub |
+  #           #!/bin/bash
+  #           apt-get update -y
+  #           apt-get install apache2 -y
+  #           systemctl start apache2
+  #           systemctl enable apache2
