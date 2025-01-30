@@ -9,12 +9,40 @@ Resources:
         - Key: name
           Value: vpc-trabajo
 
+    InternetGateway:
+      Type: AWS::EC2::InternetGateway
+
+    AttachGateway:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId: !Ref VPC
+        InternetGatewayId: !Ref InternetGateway
+
+    RouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId: !Ref VPC
+
+    Route:
+      Type: AWS::EC2::Route
+      DependsOn: AttachGateway
+      Properties:
+        RouteTableId: !Ref RouteTable
+        DestinationCidrBlock: 0.0.0.0/0
+        GatewayId: !Ref InternetGateway
+
     Subnet:
       Type: AWS::EC2::Subnet
       Properties:
         VpcId: !Ref VPC
         CidrBlock: 10.0.1.0/24
+        MapPublicIpOnLaunch: true
 
+    SubnetRouteTableAssociation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        SubnetId: !Ref Subnet
+        RouteTableId: !Ref RouteTable
 
     GrupoSeguridadJenkins:
       Type: AWS::EC2::SecurityGroup
@@ -40,7 +68,7 @@ Resources:
       Properties:
         ImageId: ami-00402f0bdf4996822
         InstanceType: t2.micro
-        KeyName: prueba
+        KeyName: jenkins_key_pair
         SubnetId: !Ref Subnet
         SecurityGroupIds:
           - !Ref GrupoSeguridadJenkins
@@ -54,7 +82,7 @@ Resources:
             apt-get update -y
             apt-get install -y apt-transport-https ca-certificates curl software-properties-common
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable"
             apt-get update -y
             apt-get install -y docker-ce
             systemctl start docker
@@ -67,7 +95,7 @@ Resources:
   #    Properties:
   #       ImageId: ami-00402f0bdf4996822
   #       InstanceType: t2.micro
-  #       KeyName: prueba
+  #       KeyName: jenkins_key_pair
   #       SecurityGroupIds:
   #         - sg-043bcdf699413a158
   #       Tags:
