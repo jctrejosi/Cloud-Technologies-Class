@@ -56,7 +56,7 @@ aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Ta
 Usa el archivo de clave privada (`jenkins_key_pair.pem`) para conectarte a la Instancia:
 
 ```bash
-ssh -i jenkins_key_pair.pem ubuntu@$PUBLIC_IP
+ssh -i jenkins_key_pair.pem admin@$PUBLIC_IP
 ```
 
 ### 6. Obtener la contraseña inicial de Jenkins
