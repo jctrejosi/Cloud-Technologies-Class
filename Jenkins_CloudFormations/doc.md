@@ -74,7 +74,7 @@ Copia la contraseña que se muestra.
 Abre tu navegador y visita:
 
 ```bash
-http://<IP_PUBLICA>:8080
+http://<$IP_PUBLICA>:8080
 ```
 
 Ingresa la contraseña que copiaste en el paso anterior.
