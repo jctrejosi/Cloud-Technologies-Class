@@ -4,7 +4,7 @@
 
 ### Archivo de plantilla YAML
 
-Guarda la plantilla de CloudFormation en un archivo llamado [`jenkins.yml`](https://github.com/jctrejosi/cloud-tecnology/blob/master/jenkins.yml).
+Guarda la plantilla de CloudFormation en un archivo llamado [`deployment.yml`](deployment.yml)
 
 ## Pasos para desplegar Jenkins
 
@@ -22,13 +22,13 @@ chmod 400 jenkins_key_pair.pem
 
 ### 2. Crear el stack en CloudFormation
 
-- Sube el archivo [`jenkins.yml`](https://github.com/jctrejosi/cloud-tecnology/blob/master/yml/jenkins.yml) al CloudShell.
-- Ejecuta el siguiente comando para crear el stack usando tu archivo `jenkins.yml`:
+- Sube el archivo [`deployment.yml`](https://github.com/jctrejosi/cloud-tecnology/blob/master/yml/deployment.yml) al CloudShell.
+- Ejecuta el siguiente comando para crear el stack usando tu archivo `deployment.yml`:
 
 ```bash
 aws cloudformation create-stack \
   --stack-name JenkinsStack \
-  --template-body file://jenkins.yml \
+  --template-body file://deployment.yml \
   --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -79,7 +79,7 @@ http://<IP_PUBLICA>:8080
 
 Ingresa la contraseña que copiaste en el paso anterior.
 
-Sigue las instrucciones en pantalla para completar la configuración inicial de Jenkins.
+Sigue las instrucciones en pantalla para completar la configuración inicial de deployment.
 
 ### 8. Eliminar el Stack-cloudformation (opcional)
 
@@ -107,7 +107,7 @@ chmod 400 jenkins_key_pair.pem
 ### Crear Stack-cloudformation
 
 ```bash
-aws cloudformation create-stack --stack-name JenkinsStack --template-body file://jenkins.yml --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation create-stack --stack-name JenkinsStack --template-body file://deployment.yml --capabilities CAPABILITY_NAMED_IAM
 ```
 
 ### Estado del Stack-cloudformation
@@ -137,7 +137,7 @@ aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Ta
 ### Conectar a la Instancia
 
   ```bash
-  ssh -i jenkins_key_pair.pem admin@$PUBLIC_IP
+  ssh -i jenkins_key_pair.pem admin@$INTANCE_PUBLIC_IP
   ```
 
 ### Ver logs de la Instancia

@@ -4,7 +4,11 @@ Este repositorio contiene diversas implementaciones y documentación relacionada
 
 ## Contenido
 
-Cada sección de este README enlaza directamente a la carpeta correspondiente dentro del repositorio.
+- Cada sección de este README enlaza directamente a la carpeta correspondiente dentro del repositorio.
+
+## Recomendaciones
+
+- Cada sección donde se copie ejecuciones de código en el bash, debes tener presente las variables nombradas como $NOMBRE_VARIABLE.
 
 ### 📂 [Despliegue de jenkins en AWS-CloudFormation](./Jenkins_CloudFormations)
 
@@ -25,9 +29,9 @@ Cada sección de este README enlaza directamente a la carpeta correspondiente de
 
 Si deseas contribuir, por favor sigue estos pasos:
 
-1. Navega a la subcarpeta del tema que te interese.
-2. Revisa la documentación incluida para comprender la implementación.
-3. Usa el archivo de despliegue para ejecutar el servicio en la nube.
-4. Crea un pull request (PR) para revisión.
+1. Realiza un fork del repositorio.
+2. Crea una rama con tu nueva funcionalidad (git checkout -b feature/nombre_de_la_funcionalidad).
+3. Realiza tus cambios y súbelos (git commit -m "Añadir nueva funcionalidad" && git push origin feature/nombre_de_la_funcionalidad).
+4. Crea un Pull Request a la rama "master" para revisión.
 
 ## Manejo de las ramas en el repositorio
