@@ -6,9 +6,10 @@ Este repositorio contiene diversas implementaciones y documentación relacionada
 
 Cada sección de este README enlaza directamente a la carpeta correspondiente dentro del repositorio.
 
-### 📂 [Despliegue de jenkins en AWS-CloudFormation](./Jenkins_CloudFormations/)
-- 📄 [Documentación](./Jenkins_AWS_CloudFormations/doc.md)
-- 🚀 [Archivo de despliegue](./Jenkins_AWS_CloudFormations/deployment.yaml)
+### 📂 [Despliegue de jenkins en AWS-CloudFormation](./Jenkins_CloudFormations)
+
+- 📄 [Documentación](./Jenkins_CloudFormations/doc.md)
+- 🚀 [Archivo de despliegue](./Jenkins_CloudFormations/deployment.yaml)
 
 ## Cómo utilizar este repositorio
 
@@ -19,7 +20,7 @@ Cada sección de este README enlaza directamente a la carpeta correspondiente de
 ## Requisitos
 
 1. Acceso a una cuenta en un proveedor de nube compatible (AWS, AWS-Formations).
-   
+
 ## Contribuciones
 
 Si deseas contribuir, por favor sigue estos pasos:
