@@ -34,5 +34,9 @@ Si deseas contribuir, por favor sigue estos pasos:
 
 ## Documentación recomendada
 
-1. [Cómo trabajar con ramas en git usando el método de Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-2. [Repositorio del profesor](https://github.com/cesarpalacios)
+1. [Repositorio del profesor del curso](https://github.com/cesarpalacios)
+2. [Cómo trabajar con ramas en git usando el método de Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+3. [Curso de git en YouTube por midudev](https://www.youtube.com/watch?v=niPExbK8lSw&t=358s&ab_channel=midulive)
+4. [Curso de git en freecodecamp](https://www.freecodecamp.org/espanol/news/aprende-git-y-github-curso-desde-cero/)
+5. [Manual de debian/comandos básicos para el manejo de subsistemas](https://www.debian.org/doc/manuals/debian-reference/debian-reference.es.pdf)
+6. [Comandos en linux Pdf (Quick refrence Linux Administrarion)](./Documentos%20de%20referencia/Linux%20Administration.pdf)
