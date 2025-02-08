@@ -1,0 +1,111 @@
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Name
+          Value: vpc-trabajo
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+
+  Route:
+    Type: AWS::EC2::Route
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  Subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true
+
+  SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet
+      RouteTableId: !Ref RouteTable
+
+  GrupoSeguridadProject:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Grupo de Seguridad de Project
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3080
+          ToPort: 3080
+          CidrIp: 0.0.0.0/0
+
+  instanciaProject:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-00402f0bdf4996822
+      InstanceType: t2.micro
+      KeyName: project_key_pair
+      SubnetId: !Ref Subnet
+      SecurityGroupIds:
+        - !Ref GrupoSeguridadProject
+      Tags:
+        - Key: Name
+          Value: instanciaProject
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+
+          # Solucionar posibles bloqueos en dpkg
+          export DEBIAN_FRONTEND=noninteractive
+          sudo rm -rf /var/lib/dpkg/lock
+          sudo rm -rf /var/lib/dpkg/lock-frontend
+          sudo dpkg --configure -a
+          while sudo fuser /var/lib/dpkg/lock >/dev/null 2>&1; do
+            echo "Esperando que termine otro proceso de apt/dpkg..."
+            sleep 5
+          done
+          sudo apt-get update -y --fix-missing
+          sudo apt-get upgrade -y--allow-downgrades --allow-remove-essential --allow-change-held-packages
+
+          # Instalar dependencias necesarias
+          sudo apt-get install -y apt-transport-https ca-certificates curl gnupg software-properties-common
+
+          # Configurar claves y repositorio de Docker
+          sudo mkdir -p /etc/apt/keyrings
+          sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+          sudo chmod a+r /etc/apt/keyrings/docker.asc
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+          # Instalar Docker y componentes
+          sudo apt-get update -y --fix-missing
+          sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+          # Iniciar y habilitar Docker
+          sudo systemctl start docker
+          sudo systemctl enable docker
+
+          #Descargar projecto
+          sudo git clone https://github.com/jctrejosi/PERT-Solver.git
+          cd PERT-Solver/Frontend
+          sudo docker build -t pert-solver .
+          sudo docker run -d -p 3080:3080 pert-solver

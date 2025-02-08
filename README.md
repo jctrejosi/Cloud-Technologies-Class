@@ -12,10 +12,15 @@ Este repositorio contiene diversas implementaciones y documentación relacionada
 
 ## Contenido
 
-### 📂 [Despliegue de jenkins en AWS-CloudFormation](./Jenkins_CloudFormations)
+### 📂 [Despliegue de jenkins en CloudFormation](./Jenkins_CloudFormations)
 
 - 📄 [Documentación](./Jenkins_CloudFormations/doc.md)
 - 🚀 [Archivo de despliegue](./Jenkins_CloudFormations/deployment.yaml)
+
+### 📂 [Despliegue de proyecto web con Docker en CloudFormation](./PERT-solver_CloudFormations)
+
+- 📄 [Documentación](./PERT-solver_CloudFormations/doc.md)
+- 🚀 [Archivo de despliegue](./PERT-solver_CloudFormations/deployment.yaml)
 
 ## Cómo utilizar este repositorio
 
