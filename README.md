@@ -1,6 +1,7 @@
 # Clase de Tecnologías en la Nube (Con AWS-Academy)
 
-Este repositorio contiene diversas implementaciones y documentación relacionadas con el laboratorio de AWS-Formation. Cada subcarpeta representa un tema específico y contiene su respectiva documentación y archivos de despliegue.
+Este repositorio contiene diversas implementaciones y documentación relacionadas con el laboratorio de AWS-Formation.
+Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su respectiva documentación y archivos de despliegue.
 
 ## Recomendaciones
 
@@ -12,15 +13,15 @@ Este repositorio contiene diversas implementaciones y documentación relacionada
 
 ## Contenido
 
-### 📂 [Despliegue de jenkins en CloudFormation](./Jenkins_CloudFormations)
+### 📂 [Despliegue de Jenkins en CloudFormation](./Jenkins_CloudFormations)
 
-- 📄 [Documentación](./Jenkins_CloudFormations/doc.md)
-- 🚀 [Archivo de despliegue](./Jenkins_CloudFormations/deployment.yaml)
+- 📄 [Documentación](./Projects/Jenkins_CloudFormations/doc.md)
+- 🚀 [Archivo de despliegue](./Projects/Jenkins_CloudFormations/deployment.yaml)
 
-### 📂 [Despliegue de proyecto web con Docker en CloudFormation](./PERT-solver_CloudFormations)
+### 📂 [Despliegue de proyectos web con Docker en CloudFormation](./PERT-solver_CloudFormations)
 
-- 📄 [Documentación](./PERT-solver_CloudFormations/doc.md)
-- 🚀 [Archivo de despliegue](./PERT-solver_CloudFormations/deployment.yaml)
+- 📄 [Documentación](./Projects/PERT-solver_CloudFormations/doc.md)
+- 🚀 [Archivo de despliegue](./Projects/PERT-solver_CloudFormations/deployment.yaml)
 
 ## Cómo utilizar este repositorio
 
@@ -33,15 +34,28 @@ Este repositorio contiene diversas implementaciones y documentación relacionada
 Si deseas contribuir, por favor sigue estos pasos:
 
 1. Realiza un fork del repositorio.
-2. Crea una rama con tu nueva funcionalidad (git checkout -b feature/nombre_de_la_funcionalidad).
-3. Realiza tus cambios y súbelos (git commit -m "Añadir nueva funcionalidad" && git push origin feature/nombre_de_la_funcionalidad).
+2. Crea una rama con tu nueva corrección ó funcionalidad:
+
+   ```bash
+   git checkout -b hotfix/nombre_de_la_corrección
+   ```
+
+   *Si es la creación de una nueva funcionalidad, comienza el nombre de la rama con "feature/" en lugar de "hotfix/"*
+
+3. Realiza tus cambios y súbelos:
+
+   ```bash
+   git commit -m "mensaje con descripción de la funcionalidad" && git push origin feature/nombre_de_la_funcionalidad
+   ```
+
 4. Crea un Pull Request a la rama "master" para revisión.
 
-## Documentación recomendada
+## Recursos adicionales
 
 1. [Repositorio del profesor del curso](https://github.com/cesarpalacios)
-2. [Cómo trabajar con ramas en git usando el método de Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-3. [Curso de git en YouTube por midudev](https://www.youtube.com/watch?v=niPExbK8lSw&t=358s&ab_channel=midulive)
-4. [Curso de git en freecodecamp](https://www.freecodecamp.org/espanol/news/aprende-git-y-github-curso-desde-cero/)
-5. [Manual de debian/comandos básicos para el manejo de subsistemas](https://www.debian.org/doc/manuals/debian-reference/debian-reference.es.pdf)
-6. [Comandos en linux pdf (Quick refrence Linux Administrarion)](./References/Linux%20Administration.pdf)
+2. [Cómo crear una solicitud de incorporación de cambios (PR)](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+3. [Cómo trabajar con ramas en git usando el método de Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+4. [Curso de git en YouTube por midudev](https://www.youtube.com/watch?v=niPExbK8lSw&t=358s&ab_channel=midulive)
+5. [Curso de git en freecodecamp](https://www.freecodecamp.org/espanol/news/aprende-git-y-github-curso-desde-cero/)
+6. [Manual de debian/comandos básicos para el manejo de subsistemas](https://www.debian.org/doc/manuals/debian-reference/debian-reference.es.pdf)
+7. [Comandos en linux pdf (Quick refrence Linux Administrarion)](./References/Linux%20Administration.pdf)
