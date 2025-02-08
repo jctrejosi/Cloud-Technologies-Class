@@ -3,15 +3,18 @@
 Este repositorio contiene diversas implementaciones y documentación relacionadas con el laboratorio de AWS-Formation.
 Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su respectiva documentación y archivos de despliegue.
 
-## Recomendaciones
+## Tabla de Contenidos
 
-- Cada sección donde se copie ejecuciones de código en el bash, debes tener presente las variables nombradas como $NOMBRE_VARIABLE.
+- [Proyectos](#proyectos)
+  - [📂 Despliegue de Jenkins en CloudFormation](#-despliegue-de-jenkins-en-cloudformation)
+  - [📂 Despliegue de proyectos web con Docker en CloudFormation](#-despliegue-de-proyectos-web-con-docker-en-cloudformation)
+- [Recomendaciones](#recomendaciones)
+- [Requisitos](#requisitos)
+- [Cómo utilizar este repositorio](#cómo-utilizar-este-repositorio)
+- [Cómo realizar contribuciones](#cómo-realizar-contribuciones)
+- [Recursos adicionales](#recursos-adicionales)
 
-## Requisitos
-
-1. Acceso a una cuenta en un proveedor de nube compatible (AWS, AWS-Formations).
-
-## Contenido
+## Proyectos
 
 ### 📂 [Despliegue de Jenkins en CloudFormation](./Jenkins_CloudFormations)
 
@@ -23,13 +26,21 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 - 📄 [Documentación](./Projects/PERT-solver_CloudFormations/doc.md)
 - 🚀 [Archivo de despliegue](./Projects/PERT-solver_CloudFormations/deployment.yaml)
 
+## Recomendaciones
+
+- Cada sección donde se copie ejecuciones de código en el bash, debes tener presente las variables nombradas como $NOMBRE_VARIABLE.
+
+## Requisitos
+
+- Acceso a una cuenta en un proveedor de nube compatible (AWS, AWS-Formations).
+
 ## Cómo utilizar este repositorio
 
 1. Navega a la subcarpeta del tema que te interese.
 2. Revisa la documentación incluida para comprender la implementación.
 3. Usa el archivo de despliegue para ejecutar el servicio en la nube.
 
-## Contribuciones
+## Cómo realizar contribuciones
 
 Si deseas contribuir, por favor sigue estos pasos:
 
