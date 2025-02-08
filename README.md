@@ -1,4 +1,4 @@
-# Clase de tecnologías en la Nube (con AWS-Academy)
+# Clase de tecnologías en la nube (con AWS-Academy)
 
 Este repositorio contiene diversas implementaciones y documentación relacionadas con el laboratorio de AWS-Formation.
 Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su respectiva documentación y archivos de despliegue.
