@@ -1,4 +1,4 @@
-# Desplegar Un proyecto (Frontend) en una ec2
+# Desplegar nn proyecto (Frontend) en una EC2 con CloudFormations
 
 ## Requisitos previos
 
