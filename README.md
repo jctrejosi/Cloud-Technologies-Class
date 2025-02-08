@@ -1,9 +1,9 @@
-# Clase de Tecnologías en la Nube (Con AWS-Academy)
+# Clase de tecnologías en la Nube (con AWS-Academy)
 
 Este repositorio contiene diversas implementaciones y documentación relacionadas con el laboratorio de AWS-Formation.
 Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su respectiva documentación y archivos de despliegue.
 
-## Tabla de Contenidos
+## Tabla de contenidos
 
 - [Proyectos](#proyectos)
   - [📂 Despliegue de Jenkins en CloudFormation](#-despliegue-de-jenkins-en-cloudformation)
