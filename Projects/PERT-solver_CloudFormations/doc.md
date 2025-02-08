@@ -8,7 +8,7 @@ Guarda la plantilla de CloudFormation en un archivo llamado [`deployment.yml`](d
 
 ## Pasos para desplegar el proyecto
 
-### 1. Crear un par de claves (key pair)
+### 1. Crear un par de claves (key pair) para conectar por SSH
 
 Ejecuta los siguientes comandos para crear un par de claves y asignarle los permisos correctos:
 
@@ -32,19 +32,18 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### 3. Verificar el estado del Stack-cloudformation
+### 3. Verificar el estado del stack
 
-Monitorea el progreso de la creación del stack:
+Monitorea el progreso de la creación del stack
 
 ```bash
 aws cloudformation describe-stacks --stack-name projectStack --query "Stacks[0].StackStatus"
 ```
 
-### 4. Obtener la IP pública de la Instancia
+### 4. Obtener la IP pública de la instancia
 
 Una vez que el stack esté en estado `CREATE_COMPLETE` debemos obtener la IP pública de la Instancia
-
-Obtener valores de las Instancias
+*Obtener valores de las Instancias*
 
 ```bash
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name'].Value | [0], PublicIpAddress, State.Name]" --output table
@@ -71,7 +70,7 @@ Ingresa la contraseña que copiaste en el paso anterior.
 
 Sigue las instrucciones en pantalla para completar la configuración inicial de deployment.
 
-### 7. Eliminar el Stack-cloudformation (opcional)
+### 7. Eliminar el stack-cloudformation (opcional)
 
 Si deseas eliminar el stack y todos los recursos asociados, ejecuta:
 
@@ -94,61 +93,61 @@ aws ec2 create-key-pair --key-name project_key_pair --query 'KeyMaterial' --outp
 chmod 400 project_key_pair.pem
 ```
 
-### Crear Stack-cloudformation
+### Crear un stack con cloudformation y el .yml correspondiente
 
 ```bash
 aws cloudformation create-stack --stack-name projectStack --template-body file://deployment.yml --capabilities CAPABILITY_NAMED_IAM
 ```
 
-### Estado del Stack-cloudformation
+### Ver estado del stack
 
 ```bash
 aws cloudformation describe-stacks --stack-name projectStack --query "Stacks[0].StackStatus"
 ```
 
-### Ver detalles y eventos de Stack-cloudformation
+### Ver detalles y eventos del stack
 
 ```bash
 aws cloudformation describe-stack-events --stack-name projectStack
 ```
 
-### Eliminar Stack-cloudformation
+### Eliminar stack-cloudformation
 
 ```bash
 aws cloudformation delete-stack --stack-name projectStack
 ```
 
-### Estado de las Instancias
+### Estado de las instancias
 
 ```bash
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name'].Value | [0], PublicIpAddress, State.Name]" --output table
 ```
 
-### Conectar a la Instancia
+### Conectar a la instancia
 
   ```bash
   ssh -i project_key_pair.pem admin@$INTANCE_PUBLIC_IP
   ```
 
-### Ver logs de la Instancia
+### Ver logs de la instancia
 
 ```bash
 sudo cat /var/log/cloud-init-output.log
 ```
 
-### Eliminar Instancias EC2
+### Eliminar instancias EC2
 
 ```bash
 aws ec2 terminate-instances --instance-ids i-xxxxxxxxxxxxxxxxx
 ```
 
-### Asignar IP pública a la Instancia
+### Asignar IP pública a la instancia
 
 ```bash
 ALLOC_ID=$(aws ec2 allocate-address --query 'AllocationId' --output text) aws ec2 associate-address --instance-id $INSTANCE_ID --allocation-id $ALLOC_ID
 ```
 
-### Obtener IP pública de Instancia
+### Obtener IP pública de instancia
 
 ```bash
 INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=Instanciaproject" --query "Reservations[0].Instances[0].InstanceId" --output text)
@@ -156,7 +155,7 @@ PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Rese
 echo $PUBLIC_IP
 ```
 
-### Validar clave usada en la Instancia (Dentro de la Instancia)
+### Validar clave usada en la instancia (Dentro de la instancia)
 
 ```bash
 aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text

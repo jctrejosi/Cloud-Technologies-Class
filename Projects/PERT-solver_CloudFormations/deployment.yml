@@ -44,10 +44,10 @@ Resources:
       SubnetId: !Ref Subnet
       RouteTableId: !Ref RouteTable
 
-  GrupoSeguridadProject:
+  GrupoSeguridadPertSolver:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Grupo de Seguridad de Project
+      GroupDescription: Grupo de Seguridad de PERT-Solver
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -59,7 +59,7 @@ Resources:
           ToPort: 3080
           CidrIp: 0.0.0.0/0
 
-  instanciaProject:
+  instanciaPertSolver:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-00402f0bdf4996822
@@ -67,10 +67,10 @@ Resources:
       KeyName: project_key_pair
       SubnetId: !Ref Subnet
       SecurityGroupIds:
-        - !Ref GrupoSeguridadProject
+        - !Ref GrupoSeguridadPertSolver
       Tags:
         - Key: Name
-          Value: instanciaProject
+          Value: instanciaPertSolver
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
