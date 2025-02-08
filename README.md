@@ -27,6 +27,11 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 - 📄 [Documentación](./Projects/PERT-solver_CloudFormations/doc.md)
 - 🚀 [Archivo de despliegue](./Projects/PERT-solver_CloudFormations/deployment.yaml)
 
+## Resumen de comandos
+
+- [CloudFormation](./Commands/cloudFormations.md)
+- [EC2](./Commands/instanceEC2.md)
+
 ## Recomendaciones
 
 - Cada sección donde se copie ejecuciones de código en el bash, debes tener presente las variables nombradas como $NOMBRE_VARIABLE.
