@@ -66,10 +66,6 @@ Abre tu navegador y visita:
 http://<$IP_PUBLICA>:3000
 ```
 
-Ingresa la contraseña que copiaste en el paso anterior.
-
-Sigue las instrucciones en pantalla para completar la configuración inicial de deployment.
-
 ### 7. Eliminar el stack-cloudformation (opcional)
 
 Si deseas eliminar el stack y todos los recursos asociados, ejecuta:
@@ -111,7 +107,7 @@ aws cloudformation describe-stacks --stack-name projectStack --query "Stacks[0].
 aws cloudformation describe-stack-events --stack-name projectStack
 ```
 
-### Eliminar stack-cloudformation
+### Eliminar stack
 
 ```bash
 aws cloudformation delete-stack --stack-name projectStack
@@ -147,7 +143,7 @@ aws ec2 terminate-instances --instance-ids i-xxxxxxxxxxxxxxxxx
 ALLOC_ID=$(aws ec2 allocate-address --query 'AllocationId' --output text) aws ec2 associate-address --instance-id $INSTANCE_ID --allocation-id $ALLOC_ID
 ```
 
-### Obtener IP pública de instancia
+### Obtener IP pública de la instancia
 
 ```bash
 INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=Instanciaproject" --query "Reservations[0].Instances[0].InstanceId" --output text)
@@ -155,7 +151,7 @@ PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Rese
 echo $PUBLIC_IP
 ```
 
-### Validar clave usada en la instancia (Dentro de la instancia)
+### Validar clave ssh usada para crear la instancia
 
 ```bash
 aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[0].Instances[0].KeyName" --output text
