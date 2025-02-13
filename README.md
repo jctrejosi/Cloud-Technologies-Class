@@ -9,6 +9,7 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 - [Proyectos](#proyectos)
   - [📂 Despliegue de Jenkins en CloudFormation](#-despliegue-de-jenkins-en-cloudformation)
   - [📂 Despliegue de proyectos web con Docker en CloudFormation](#-despliegue-de-proyectos-web-con-docker-en-cloudformation)
+- [Resumen de comandos](#resumen-de-comandos)
 - [Recomendaciones](#recomendaciones)
 - [Requisitos](#requisitos)
 - [Cómo utilizar este repositorio](#cómo-utilizar-este-repositorio)
@@ -17,12 +18,12 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 
 ## Proyectos
 
-### 📂 [Despliegue de Jenkins en CloudFormation](./Jenkins_CloudFormations)
+### 📂 [Despliegue de Jenkins en CloudFormation](./Projects/Jenkins_CloudFormations)
 
 - 📄 [Documentación](./Projects/Jenkins_CloudFormations/doc.md)
 - 🚀 [Archivo de despliegue](./Projects/Jenkins_CloudFormations/deployment.yaml)
 
-### 📂 [Despliegue de proyectos web con Docker en CloudFormation](./PERT-solver_CloudFormations)
+### 📂 [Despliegue de proyectos web con Docker en CloudFormation](./Projects/PERT-solver_CloudFormations)
 
 - 📄 [Documentación](./Projects/PERT-solver_CloudFormations/doc.md)
 - 🚀 [Archivo de despliegue](./Projects/PERT-solver_CloudFormations/deployment.yaml)
