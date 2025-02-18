@@ -9,6 +9,7 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 - [Proyectos](#proyectos)
   - [📂 Despliegue de Jenkins en CloudFormation](#-despliegue-de-jenkins-en-cloudformation)
   - [📂 Despliegue de proyectos web con Docker en CloudFormation](#-despliegue-de-proyectos-web-con-docker-en-cloudformation)
+  - [📂 Proyecto final](#-proyecto-final)
 - [Resumen de comandos](#resumen-de-comandos)
 - [Recomendaciones](#recomendaciones)
 - [Requisitos](#requisitos)
@@ -28,7 +29,7 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 - 📄 [Documentación](./Projects/End_project/doc.md)
 - 🚀 [Archivo de despliegue](./Projects/End_project/deployment.yaml)
 
-### 📂 [Proyecto final de la clase](./Projects/End_project)
+### 📂 [Proyecto final](./Projects/End_project)
 
 - 🚀 [Documentación](./Projects/PERT-solver_CloudFormations/doc.yaml)
 - 📄 [Caso de estudio](./Projects/PERT-solver_CloudFormations/doc.md)
