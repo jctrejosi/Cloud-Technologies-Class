@@ -25,8 +25,13 @@ Cada 📂Projects/"subcarpeta" representa un tema específico y contiene su resp
 
 ### 📂 [Despliegue de proyectos web con Docker en CloudFormation](./Projects/PERT-solver_CloudFormations)
 
-- 📄 [Documentación](./Projects/PERT-solver_CloudFormations/doc.md)
-- 🚀 [Archivo de despliegue](./Projects/PERT-solver_CloudFormations/deployment.yaml)
+- 📄 [Documentación](./Projects/End_project/doc.md)
+- 🚀 [Archivo de despliegue](./Projects/End_project/deployment.yaml)
+
+### 📂 [Proyecto final de la clase](./Projects/End_project)
+
+- 🚀 [Documentación](./Projects/PERT-solver_CloudFormations/doc.yaml)
+- 📄 [Caso de estudio](./Projects/PERT-solver_CloudFormations/doc.md)
 
 ## Resumen de comandos
 
