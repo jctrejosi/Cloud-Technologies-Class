@@ -65,14 +65,18 @@ El sistema debe garantizar alta disponibilidad y resiliencia frente a fallos, as
 
 El sistema se diseñará con una arquitectura basada en microservicios desplegados en AWS, con integración entre los siguientes componentes:
 
+- **Cloud Formation:** Generar la infraestructura.
 - **Amazon API Gateway:** Punto de entrada centralizado para las solicitudes de los usuarios.
 - **AWS Lambda:** Procesamiento serverless de los datos.
 - **Amazon DynamoDB:** Base de datos NoSQL escalable para almacenar datos de análisis.
 - **Amazon S3:** Almacenamiento de archivos, incluyendo PDFs generados.
 - **Amazon SES:** Servicio para envío de correos electrónicos con resultados.
 - **Amazon Cognito:** Gestión de autenticación y autorización.
-- **AWS WAF y GuardDuty:** Seguridad avanzada contra ataques.
-- **AWS CloudWatch:** Monitoreo y logs de actividad.
+- **Shield:** Seguridad avanzada contra ataques.
+- **Secrets manager:** Credenciales y tokens.
+- **Credentials manager:** Conexiones SSL/TLS.
+- **Cognito:** Autenticación.
+- **AWS CloudWatch y CloudTrial:** Monitoreo y logs de actividad.
 - **AWS Auto Scaling:** Ajuste dinámico de capacidad para optimizar costos y rendimiento.
 
 El sistema se desplegará en una **VPC con subredes públicas y privadas**, asegurando la seguridad y aislamiento de recursos críticos.
@@ -281,8 +285,8 @@ Cada vez que haya un cambio en el backend:
 |----------|------------------------|  
 | **Route 53** | $1 - $5 |  
 | **S3 (Frontend + PDFs)** | $5 - $20 |  
-| **CloudFront** | $5 - $50 |  
-| **API Gateway** | $5 - $30 |  
+| **CloudFront** | $5 - $50 |
+| **API Gateway** | $5 - $30 |
 | **Lambda** | $2 - $30 |  
 | **DynamoDB** | $5 - $30 |  
 | **Comprehend** | $10 - $100 |  
