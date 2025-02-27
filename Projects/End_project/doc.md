@@ -1,4 +1,4 @@
-# Análisis de Requerimientos para la Arquitectura en AWS
+# Arquitectura de AWS en el manejo de la ansiedad
 
 ## 1. Introducción
 
@@ -356,3 +356,8 @@ El diseño basado en microservicios y la implementación en AWS permitirán una 
 - **GitHub Actions** es más flexible y se integra nativamente con repositorios GitHub.
 - **CodeBuild** es más costoso y depende de AWS, mientras que GitHub Actions es gratuito para repositorios públicos.
 - Permite definir flujos CI/CD personalizados sin depender completamente de AWS.
+
+### **6️⃣ ¿Por qué para comunicar la lamba con la s3 de pdf's se necesita una tabla de rutas y para SES no?**
+
+- Un VPC Endpoint (Gateway) necesita una tabla de rutas porque redirige el tráfico de la VPC hacia S3 sin salir a Internet.
+- SES NO está dentro de la VPC, pero con un VPC Endpoint (Interface), Lambda puede conectarse a SES sin salir a Internet.
