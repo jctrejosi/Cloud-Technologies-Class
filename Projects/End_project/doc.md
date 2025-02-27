@@ -90,10 +90,78 @@ Cada vez que haya un cambio en el backend:
 
 ![Diagrama de arquitectura](./AWS_diagram.drawio.png)
 
-## 7. Conclusión
+# 7. Arquitectura Detallada en AWS
+
+## **📌 Flujo del Sistema**
+
+### **1️⃣ Acceso del Usuario**
+
+1. **El usuario ingresa a la plataforma a través de Route 53**.
+   - *Amazon Route 53* es el servicio de DNS que permite a los usuarios acceder a la plataforma mediante un nombre de dominio.
+   - Redirige el tráfico al **frontend alojado en S3 y distribuido con CloudFront**.
+
+---
+
+### **2️⃣ Carga del Frontend**
+
+2. **El frontend está alojado en S3 y distribuido con CloudFront**.
+   - *Amazon S3* almacena los archivos estáticos del frontend.
+   - *Amazon CloudFront* actúa como CDN, optimizando la entrega de contenido y reduciendo la latencia global.
+
+3. **El frontend se comunica con el backend a través de API Gateway**.
+   - *Amazon API Gateway* gestiona las solicitudes HTTP del usuario.
+   - Redirige las peticiones a una **Lambda en la subred privada** dentro de la VPC.
+
+---
+
+### **3️⃣ Procesamiento en el Backend**
+
+4. **La Lambda en la subred privada procesa los datos con Amazon Comprehend**.
+   - *AWS Lambda* ejecuta código en Python sin necesidad de servidores.
+   - *Amazon Comprehend* realiza análisis de lenguaje natural sobre los datos enviados por el usuario.
+
+5. **Los resultados del análisis se almacenan en Amazon DynamoDB**.
+   - *DynamoDB* es una base de datos NoSQL altamente escalable.
+   - Permite consultas rápidas sin afectar el rendimiento del sistema.
+
+---
+
+### **4️⃣ Generación y Almacenamiento de PDF**
+
+6. **La Lambda genera un PDF con los resultados y lo guarda en S3**.
+   - *Amazon S3 (Bucket de PDFs)* almacena los informes generados.
+   - **VPC Endpoint (Gateway) para S3** permite la conexión privada entre Lambda y S3.
+   - La **tabla de enrutamiento** de la subred privada direcciona las solicitudes a S3.
+
+---
+
+### **5️⃣ Notificación al Usuario**
+
+7. **La Lambda envía una notificación al usuario por correo con SES**.
+   - *Amazon Simple Email Service (SES)* envía correos con los resultados.
+   - **VPC Endpoint (Interface) para SES** permite que Lambda acceda a SES sin salir a Internet.
+
+---
+
+## **🔍 Monitoreo y Seguridad**
+
+### **🔹 Monitoreo**
+
+- *Amazon CloudWatch*: Captura logs y métricas en tiempo real.
+- *AWS CloudTrail*: Registra acciones realizadas en la infraestructura para auditoría.
+
+### **🔹 Seguridad**
+
+- *AWS IAM*: Control de acceso a recursos.
+- *AWS Shield*: Protección contra ataques DDoS.
+- *AWS Secrets Manager*: Gestión de credenciales y claves API.
+- *AWS Certificate Manager*: Manejo de certificados SSL.
+- *Amazon Cognito*: Gestión de autenticación y autorización de usuarios.
+
+## 8. Conclusión
 
 El diseño basado en microservicios y la implementación en AWS permitirán una solución escalable y segura. La automatización mediante infraestructura como código optimiza la gestión y reducción de costos operativos.
 
-## 8. Trabajo futuro
+## 9. Trabajo futuro
 
 - Implementación de Machine Learning con Amazon SageMaker para mejorar el análisis de datos.
