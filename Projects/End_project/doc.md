@@ -3,7 +3,16 @@
 ## 1. Introducción
 
 El objetivo de este análisis es diseñar una arquitectura en la nube utilizando AWS, que permita la implementación de un sistema para el análisis de impactos de la ansiedad.
-El sistema debe ser escalable, seguro y altamente disponible, cumpliendo con las necesidades especificadas.
+
+### Descripción del sistema
+
+El sistema está diseñado para ayudar a los usuarios a gestionar su ansiedad mediante el análisis de encuestas y la generación de informes personalizados.
+
+El usuario accede al sistema a través de un portal web, donde inicia sesión con sus credenciales. Luego, completa una encuesta que evalúa su nivel de ansiedad. Los datos de la encuesta son enviados a AWS Lambda, que procesa la información utilizando Amazon Comprehend para analizar patrones y detectar tendencias emocionales.
+
+Los resultados del análisis se almacenan en Amazon DynamoDB, permitiendo un acceso rápido y seguro. Con base en estos datos, el sistema genera un informe en PDF, el cual se guarda en Amazon S3. Posteriormente, el usuario recibe una notificación por correo electrónico con el resultado de su análisis y un enlace para descargar el informe.
+
+Además, el sistema permite a los usuarios consultar su historial de encuestas, facilitando un seguimiento continuo de su evolución emocional. Esta funcionalidad les ayuda a visualizar su progreso y tomar decisiones informadas sobre su bienestar.
 
 ## 2. Requerimientos funcionales (RF)
 
