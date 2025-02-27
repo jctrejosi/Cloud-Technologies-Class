@@ -321,7 +321,7 @@ El diseño basado en microservicios y la implementación en AWS permitirán una 
 - **NAT Gateway** implica un costo adicional y expone tráfico a Internet.
 - VPC Endpoints son más seguros y reducen costos operativos.
 
-### **3️⃣ ¿Cómo funciona la seguridad (IAM, Shield, etc.) y por qué se incluyeron?**
+### **3️⃣ ¿Cómo funciona la seguridad y por qué se incluyó cada módulo?**
 
 - **IAM:** Controla los accesos y permisos en AWS.
 - **Shield:** Protección contra ataques DDoS.
