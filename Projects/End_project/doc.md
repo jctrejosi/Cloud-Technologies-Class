@@ -78,6 +78,7 @@ El sistema se diseñará con una arquitectura basada en microservicios desplegad
 - **Cognito:** Autenticación.
 - **AWS CloudWatch y CloudTrial:** Monitoreo y logs de actividad.
 - **AWS Auto Scaling:** Ajuste dinámico de capacidad para optimizar costos y rendimiento.
+- **PDFKit:** Servicio de librería para generar los informes.
 
 El sistema se desplegará en una **VPC con subredes públicas y privadas**, asegurando la seguridad y aislamiento de recursos críticos.
 
